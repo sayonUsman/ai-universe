@@ -43,7 +43,7 @@ const displayInformation = (information) => {
 
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
-            <button id="details-btn" class="btn rounded-circle"><img class="img-fluid" src="arrow.svg" />
+            <button type="button" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="arrow.svg" />
           </div>
         </div>
       </div>
@@ -77,9 +77,7 @@ const displayMoreInformation = (information) => {
 
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
-            <button id="details-btn" class="btn rounded-circle"><img class="img-fluid" src="arrow.svg" />
-          </div>
-    </button>
+            <button type="button" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="arrow.svg" />
           </div>
         </div>
       </div>
