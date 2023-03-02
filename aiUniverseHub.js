@@ -40,7 +40,11 @@ const displayInformation = (information) => {
           <p>2. ${information[index].features[1]}</p>
           <p>3. ${information[index].features[2]}</p>
           <hr class="ps-3 pe-3"/>
-          <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
+            <button id="details-btn" class="btn rounded-circle"><img class="img-fluid" src="arrow.svg" />
+          </div>
         </div>
       </div>
     `;
@@ -70,7 +74,13 @@ const displayMoreInformation = (information) => {
           <p>2. ${information[index].features[1]}</p>
           <p>3. ${information[index].features[2]}</p>
           <hr class="ps-3 pe-3"/>
-          <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
+            <button id="details-btn" class="btn rounded-circle"><img class="img-fluid" src="arrow.svg" />
+          </div>
+    </button>
+          </div>
         </div>
       </div>
     `;
