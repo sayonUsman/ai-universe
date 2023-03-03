@@ -43,7 +43,7 @@ const displayInformation = (information, length = information.length) => {
               <p><span><img class="img-fluid" src="../icons/calendar_month.svg" />   ${information[index].published_in}</p>
             </div>
 
-            <button type="button" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="../icons/arrow.svg" />
+            <button type="button" onclick="loadDetails('${information[index].id}')" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="../icons/arrow.svg" />
           </div>
         </div>
       </div>
@@ -54,6 +54,56 @@ const displayInformation = (information, length = information.length) => {
       ? (document.getElementById("see-btn").innerText = "See More")
       : (document.getElementById("see-btn-container").innerHTML = "");
   }
+};
+
+const loadDetails = async (id) => {
+  try {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data.data);
+    displayDetails(data.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const displayDetails = (id) => {
+  const title = document.getElementById("title");
+  const content = document.getElementById("content");
+  const image = document.getElementById("image");
+  title.innerText = id.tool_name;
+
+  content.innerHTML = `
+    <h6 class="fw-bolder">${id.description}</h6>
+
+    <div class="d-flex flex-column flex-lg-row justify-content-between">
+      <div>
+        <h5 class="fw-bolder">Features</h5>
+        <ul>
+          <li>${id.features[1].feature_name}</li>
+          <li>${id.features[2].feature_name}</li>
+          <li>${id.features[3].feature_name}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="fw-bolder">Integrations</h5>
+        <ul>
+          <li>${id.integrations[0]}</li>
+          <li>${id.integrations[1] ? id.integrations[1] : ""}</li>
+          <li>${id.integrations[2] ? id.integrations[2] : ""}</li>
+        </ul>
+      </div>
+    </div>
+  `;
+
+  image.innerHTML = `
+    <img class="img-fluid" src="${id.image_link[0]}"/>
+    <h6 class="fw-bolder text-center pt-3">${id.input_output_examples[0].input}</h6>
+    <p class="text-center">${id.input_output_examples[0].output}</p>
+  `;
 };
 
 loadInformation(6);
