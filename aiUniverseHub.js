@@ -38,8 +38,12 @@ const displayInformation = (information, length = information.length) => {
           <hr class="ps-3 pe-3"/>
 
           <div class="d-flex justify-content-between align-items-center">
-            <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
-            <button type="button" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="arrow.svg" />
+            <div>
+              <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
+              <p><span><img class="img-fluid" src="../icons/calendar_month.svg" />   ${information[index].published_in}</p>
+            </div>
+
+            <button type="button" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="../icons/arrow.svg" />
           </div>
         </div>
       </div>
