@@ -78,6 +78,36 @@ const displayDetails = (id) => {
   content.innerHTML = `
     <h6 class="fw-bolder">${id.description}</h6>
 
+    <div class="row row-cols-1 w-75 g-3 ms-4 mt-3 mb-4">
+      <div class="col border border-dark rounded p-3">
+        <p class="text-center mt-2 mb-1">${
+          id.pricing[0].price == 0 ? "No Cost" : id.pricing[0].price
+        }</P>
+        <p class="text-center">${
+          id.pricing[0].plan ? id.pricing[0].plan : "Free of Cost"
+        }</P>
+      </div>
+
+      <div class="col border border-dark rounded">
+        <p class="text-center mt-4 mb-1">${
+          id.pricing[1].price == 0 ? "No Cost" : id.pricing[1].price
+        }</P>
+        <p class="text-center">${
+          id.pricing[1].plan ? id.pricing[1].plan : "Free of Cost"
+        }</P>
+      </div>
+
+      <div class="col border border-dark rounded">
+        <p class="text-center mt-4 mb-1">${
+          id.pricing[2].price == 0 ? "No Cost" : id.pricing[2].price
+        }</P>
+        <p class="text-center">${
+          id.pricing[2].plan ? id.pricing[2].plan : "Free of Cost"
+        }</P>
+      </div>
+      
+    </div>
+
     <div class="d-flex flex-column flex-lg-row justify-content-between">
       <div>
         <h5 class="fw-bolder">Features</h5>
@@ -92,8 +122,8 @@ const displayDetails = (id) => {
         <h5 class="fw-bolder">Integrations</h5>
         <ul>
           <li>${id.integrations[0]}</li>
-          <li>${id.integrations[1] ? id.integrations[1] : ""}</li>
-          <li>${id.integrations[2] ? id.integrations[2] : ""}</li>
+          <li>${id.integrations[1] ? id.integrations[1] : "No Data Found"}</li>
+          <li>${id.integrations[2] ? id.integrations[2] : "No Data Found"}</li>
         </ul>
       </div>
     </div>
