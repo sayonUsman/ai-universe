@@ -11,8 +11,15 @@ const loadInformation = async (length) => {
 
 const displayInformation = (information, length = information.length) => {
   const informationContainer = document.getElementById("information-container");
+  let seeMoreDetails = true;
+  let index = 0;
 
-  for (let index = 0; index < length; index++) {
+  if (length !== 6) {
+    seeMoreDetails = false;
+    index = 6;
+  }
+
+  for (index; index < length; index++) {
     const informationSection = document.createElement("div");
 
     if (index === 3) {
@@ -39,6 +46,9 @@ const displayInformation = (information, length = information.length) => {
     `;
 
     informationContainer.appendChild(informationSection);
+    seeMoreDetails
+      ? (document.getElementById("see-btn").innerText = "See More")
+      : (document.getElementById("see-btn-container").innerHTML = "");
   }
 };
 
