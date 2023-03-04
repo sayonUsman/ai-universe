@@ -5,7 +5,11 @@ const loadInformation = async (length) => {
     const data = await response.json();
     displayInformation(data.data.tools, length);
   } catch (error) {
-    console.log(error);
+    document.querySelector("#container").innerHTML = `
+      <div>
+        <h2 class="fw-bolder text-warning">Oops!!! Maybe there is happened problem to load the page. Please reload the page.</h2>
+      </div>
+    `;
   }
 };
 
@@ -61,10 +65,13 @@ const loadDetails = async (id) => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data.data);
     displayDetails(data.data);
   } catch (error) {
-    console.log(error);
+    document.querySelector("#detailsContainer").innerHTML = `
+      <div>
+        <h2 class="fw-bolder text-warning">Oops!!! Maybe there is happened problem to load the page. Please reload the page.</h2>
+      </div>
+    `;
   }
 };
 
@@ -78,7 +85,7 @@ const displayDetails = (id) => {
     <h6 class="fw-bolder">${id.description}</h6>
 
     <div class="row row-cols-1 w-75 g-3 ms-4 mt-3 mb-4">
-      <div class="col border border-dark rounded p-3">
+      <div class="col border border-dark rounded">
         <p class="text-center mt-2 mb-1">${
           id.pricing == null
             ? "No Cost"
@@ -91,7 +98,7 @@ const displayDetails = (id) => {
         }</P>
       </div>
 
-      <div class="col border border-dark rounded p-3">
+      <div class="col border border-dark rounded">
         <p class="text-center mt-2 mb-1">${
           id.pricing == null
             ? "No Cost"
@@ -104,7 +111,7 @@ const displayDetails = (id) => {
         }</P>
       </div>
 
-      <div class="col border border-dark rounded p-3">
+      <div class="col border border-dark rounded">
         <p class="text-center mt-2 mb-1">${
           id.pricing == null
             ? "No Cost"
