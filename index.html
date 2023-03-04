@@ -21,7 +21,7 @@
       class="d-flex justify-content-center align-items-center w-100 h-100 position-fixed"
     >
       <div
-        class="spinner-grow text-dark"
+        class="spinner-border text-dark"
         style="width: 5rem; height: 5rem"
         role="status"
       >
@@ -38,7 +38,9 @@
     <main>
       <div id="container" class="d-none container">
         <div class="d-flex justify-content-center mb-4">
-          <button class="btn btn-primary">Sort By Date</button>
+          <button id="sort-btn" class="btn btn-primary" onclick="sortByDate()">
+            Sort By Date
+          </button>
         </div>
 
         <div

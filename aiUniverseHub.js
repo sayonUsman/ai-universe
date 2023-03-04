@@ -28,9 +28,10 @@ const loadInformation = async (length) => {
   }
 };
 
+let seeMoreDetails = true;
+
 const displayInformation = (information, length = information.length) => {
   const informationContainer = document.getElementById("information-container");
-  let seeMoreDetails = true;
   let index = 0;
 
   if (length !== 6) {
@@ -205,6 +206,68 @@ const displayDetails = (id) => {
         : id.input_output_examples[0].output
     }</p>
   `;
+};
+
+const sortByDate = async () => {
+  try {
+    const url = `https://openapi.programming-hero.com/api/ai/tools`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const information = data.data.tools;
+    const sortedInformation = information.sort((info1, info2) =>
+      info1.published_in < info2.published_in
+        ? 1
+        : info1.published_in > info2.published_in
+        ? -1
+        : 0
+    );
+    seeMoreDetails
+      ? displaySortedInformation(sortedInformation, 6)
+      : displaySortedInformation(sortedInformation);
+  } catch (error) {
+    document.querySelector("#container").innerHTML = `
+      <div>
+        <h2 class="fw-bolder text-warning">Oops!!! Maybe there is happened problem to load the page. Please reload the page.</h2>
+      </div>
+    `;
+  }
+};
+
+const displaySortedInformation = (information, length = information.length) => {
+  const informationContainer = document.getElementById("information-container");
+  informationContainer.innerHTML = "";
+
+  for (let index = 0; index < length; index++) {
+    const informationSection = document.createElement("div");
+
+    informationSection.innerHTML = `
+      <div class="card shadow h-100">
+        <img src="${information[index].image}" class="img-fluid p-3" alt="There is a image.">
+
+        <div class="card-body">
+          <h2 class="card-title fw-bold mb-3">Features</h2>
+          <p>1. ${information[index].features[0]}</p>
+          <p>2. ${information[index].features[1]}</p>
+          <p>3. ${information[index].features[2]}</p>
+          <hr class="ps-3 pe-3"/>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
+              <p><span><img class="img-fluid" src="./icons/calendar_month.svg" />   ${information[index].published_in}</p>
+            </div>
+
+            <button type="button" onclick="loadDetails('${information[index].id}')" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="./icons/arrow.svg" />
+          </div>
+        </div>
+      </div>
+    `;
+
+    informationContainer.appendChild(informationSection);
+    seeMoreDetails
+      ? (document.getElementById("see-btn").innerText = "See More")
+      : (document.getElementById("see-btn-container").innerHTML = "");
+  }
 };
 
 loadInformation(6);
