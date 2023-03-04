@@ -40,10 +40,10 @@ const displayInformation = (information, length = information.length) => {
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <h2 class="card-title fw-bold mb-3">${information[index].name}</h2>
-              <p><span><img class="img-fluid" src="../icons/calendar_month.svg" />   ${information[index].published_in}</p>
+              <p><span><img class="img-fluid" src="./icons/calendar_month.svg" />   ${information[index].published_in}</p>
             </div>
 
-            <button type="button" onclick="loadDetails('${information[index].id}')" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="../icons/arrow.svg" />
+            <button type="button" onclick="loadDetails('${information[index].id}')" class="btn rounded-circle" data-bs-toggle="modal" data-bs-target="#detailsModal"><img class="img-fluid" src="./icons/arrow.svg" />
           </div>
         </div>
       </div>
@@ -81,31 +81,42 @@ const displayDetails = (id) => {
     <div class="row row-cols-1 w-75 g-3 ms-4 mt-3 mb-4">
       <div class="col border border-dark rounded p-3">
         <p class="text-center mt-2 mb-1">${
-          id.pricing[0].price == 0 ? "No Cost" : id.pricing[0].price
+          id.pricing == null
+            ? "No Cost"
+            : id.pricing[0].price == 0
+            ? "No Cost"
+            : id.pricing[0].price
         }</P>
         <p class="text-center">${
-          id.pricing[0].plan ? id.pricing[0].plan : "Free of Cost"
+          id.pricing == null ? "Free" : id.pricing[0].plan
         }</P>
       </div>
 
-      <div class="col border border-dark rounded">
-        <p class="text-center mt-4 mb-1">${
-          id.pricing[1].price == 0 ? "No Cost" : id.pricing[1].price
+      <div class="col border border-dark rounded p-3">
+        <p class="text-center mt-2 mb-1">${
+          id.pricing == null
+            ? "No Cost"
+            : id.pricing[1].price == 0
+            ? "No Cost"
+            : id.pricing[1].price
         }</P>
         <p class="text-center">${
-          id.pricing[1].plan ? id.pricing[1].plan : "Free of Cost"
+          id.pricing == null ? "Free" : id.pricing[1].plan
         }</P>
       </div>
 
-      <div class="col border border-dark rounded">
-        <p class="text-center mt-4 mb-1">${
-          id.pricing[2].price == 0 ? "No Cost" : id.pricing[2].price
+      <div class="col border border-dark rounded p-3">
+        <p class="text-center mt-2 mb-1">${
+          id.pricing == null
+            ? "No Cost"
+            : id.pricing[2].price == 0
+            ? "No Cost"
+            : id.pricing[2].price
         }</P>
         <p class="text-center">${
-          id.pricing[2].plan ? id.pricing[2].plan : "Free of Cost"
+          id.pricing == null ? "Free" : id.pricing[2].plan
         }</P>
       </div>
-      
     </div>
 
     <div class="d-flex flex-column flex-lg-row justify-content-between">
@@ -121,9 +132,31 @@ const displayDetails = (id) => {
       <div>
         <h5 class="fw-bolder">Integrations</h5>
         <ul>
-          <li>${id.integrations[0]}</li>
-          <li>${id.integrations[1] ? id.integrations[1] : "No Data Found"}</li>
-          <li>${id.integrations[2] ? id.integrations[2] : "No Data Found"}</li>
+          <li>${
+            id.integrations == null
+              ? "No Data Found"
+              : id.integrations[0] == undefined
+              ? "No Data Found"
+              : id.integrations[0]
+          }</li>
+          <li class="${
+            id.integrations == null
+              ? "d-none"
+              : id.integrations[1] == undefined
+              ? "d-none"
+              : "d-block"
+          }">${
+    id.integrations == null ? "No Data Found" : id.integrations[1]
+  }</li>
+          <li class="${
+            id.integrations == null
+              ? "d-none"
+              : id.integrations[2] == undefined
+              ? "d-none"
+              : "d-block"
+          }">${
+    id.integrations == null ? "No Data Found" : id.integrations[2]
+  }</li>
         </ul>
       </div>
     </div>
@@ -131,8 +164,16 @@ const displayDetails = (id) => {
 
   image.innerHTML = `
     <img class="img-fluid" src="${id.image_link[0]}"/>
-    <h6 class="fw-bolder text-center pt-3">${id.input_output_examples[0].input}</h6>
-    <p class="text-center">${id.input_output_examples[0].output}</p>
+    <h6 class="fw-bolder text-center pt-3">${
+      id.input_output_examples == null
+        ? "Can you give any example?"
+        : id.input_output_examples[0].input
+    }</h6>
+    <p class="text-center">${
+      id.input_output_examples == null
+        ? "No! Not Yet! Take a break!!!"
+        : id.input_output_examples[0].output
+    }</p>
   `;
 };
 
