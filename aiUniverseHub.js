@@ -1,3 +1,4 @@
+// This event listener will hide preloader and display information cards after loading data
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
   const headerTitle = document.getElementById("headerTitle");
@@ -13,6 +14,7 @@ window.addEventListener("load", () => {
   container.classList.add("d-block");
 });
 
+// This function will load data through API
 const loadInformation = async (length) => {
   try {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -30,6 +32,7 @@ const loadInformation = async (length) => {
 
 let seeMoreDetails = true;
 
+// This function will display the data after loading complete data
 const displayInformation = (information, length = information.length) => {
   const informationContainer = document.getElementById("information-container");
   let index = 0;
@@ -76,6 +79,7 @@ const displayInformation = (information, length = information.length) => {
   }
 };
 
+// This function will load single data through API
 const loadDetails = async (id) => {
   try {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
@@ -91,6 +95,7 @@ const loadDetails = async (id) => {
   }
 };
 
+// This function will display the details for single data after loading complete data
 const displayDetails = (id) => {
   const title = document.getElementById("title");
   const content = document.getElementById("content");
@@ -208,6 +213,7 @@ const displayDetails = (id) => {
   `;
 };
 
+// This function will load data through API and after loading it will sort the data by published date
 const sortByDate = async () => {
   try {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -233,6 +239,7 @@ const sortByDate = async () => {
   }
 };
 
+// This function will display the sorted data after loading complete data
 const displaySortedInformation = (information, length = information.length) => {
   const informationContainer = document.getElementById("information-container");
   informationContainer.innerHTML = "";
