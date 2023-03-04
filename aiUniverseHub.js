@@ -59,7 +59,6 @@ const displayInformation = (information, length = information.length) => {
 const loadDetails = async (id) => {
   try {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
-    console.log(url);
     const response = await fetch(url);
     const data = await response.json();
     console.log(data.data);
@@ -88,7 +87,7 @@ const displayDetails = (id) => {
             : id.pricing[0].price
         }</P>
         <p class="text-center">${
-          id.pricing == null ? "Free" : id.pricing[0].plan
+          id.pricing == null ? "Starter" : id.pricing[0].plan
         }</P>
       </div>
 
@@ -101,7 +100,7 @@ const displayDetails = (id) => {
             : id.pricing[1].price
         }</P>
         <p class="text-center">${
-          id.pricing == null ? "Free" : id.pricing[1].plan
+          id.pricing == null ? "Professional" : id.pricing[1].plan
         }</P>
       </div>
 
@@ -114,7 +113,7 @@ const displayDetails = (id) => {
             : id.pricing[2].price
         }</P>
         <p class="text-center">${
-          id.pricing == null ? "Free" : id.pricing[2].plan
+          id.pricing == null ? "Enterprise" : id.pricing[2].plan
         }</P>
       </div>
     </div>
@@ -163,7 +162,16 @@ const displayDetails = (id) => {
   `;
 
   image.innerHTML = `
-    <img class="img-fluid" src="${id.image_link[0]}"/>
+    <div class="position-relative">
+      <img class="img-fluid" src="${id.image_link[0]}"/>
+    
+      <p class="${
+        id.accuracy.score == null
+          ? "d-none"
+          : "d-inline-block ps-2 pe-2 bg-warning text-white position-absolute top-0 end-0"
+      }">${id.accuracy.score * 100}% accuracy</p>
+    </div>
+
     <h6 class="fw-bolder text-center pt-3">${
       id.input_output_examples == null
         ? "Can you give any example?"
