@@ -16,12 +16,27 @@
   </head>
 
   <body>
+    <div
+      id="preloader"
+      class="d-flex justify-content-center align-items-center w-100 h-100 position-fixed"
+    >
+      <div
+        class="spinner-grow text-dark"
+        style="width: 5rem; height: 5rem"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
     <header>
-      <h1 class="text-center fw-bold mt-3 mb-5">AI Universe Hub</h1>
+      <h1 id="headerTitle" class="d-none text-center fw-bold mt-3 mb-5">
+        AI Universe Hub
+      </h1>
     </header>
 
     <main>
-      <div id="container" class="container">
+      <div id="container" class="d-none container">
         <div class="d-flex justify-content-center mb-4">
           <button class="btn btn-primary">Sort By Date</button>
         </div>

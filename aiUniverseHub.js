@@ -1,3 +1,18 @@
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  const headerTitle = document.getElementById("headerTitle");
+  const container = document.getElementById("container");
+
+  preloader.classList.remove("d-flex");
+  preloader.classList.add("d-none");
+
+  headerTitle.classList.remove("d-none");
+  headerTitle.classList.add("d-block");
+
+  container.classList.remove("d-none");
+  container.classList.add("d-block");
+});
+
 const loadInformation = async (length) => {
   try {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
