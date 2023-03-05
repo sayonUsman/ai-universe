@@ -50,7 +50,7 @@ const displayInformation = (information, length = information.length) => {
     }
 
     informationSection.innerHTML = `
-      <div class="card shadow h-100">
+      <div class="card h-100 border-0" style="box-shadow: 7px 7px 10px #0d6efd;">
         <img src="${information[index].image}" class="img-fluid p-3" alt="There is a image.">
 
         <div class="card-body">
