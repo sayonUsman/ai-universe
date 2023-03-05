@@ -102,88 +102,95 @@ const displayDetails = (id) => {
   const image = document.getElementById("image");
 
   content.innerHTML = `
-    <h6 class="fw-bolder">${id.description}</h6>
+    <div class="d-flex flex-column align-items-center">
+      <h6 class="fw-bolder pt-2">${id.description}</h6>
+      
+      <div class="d-flex flex-column align-items-center">
+        <div class="row row-cols-1 w-75 g-3 mt-3 mb-4">
+          <div class="col border border-warning rounded">
+            <p class="text-center mt-2 mb-1">${
+              id.pricing == null
+                ? "No Cost"
+                : id.pricing[0].price == 0
+                ? "No Cost"
+                : id.pricing[0].price
+            }</P>
+            <p class="text-center">${
+              id.pricing == null ? "Starter" : id.pricing[0].plan
+            }</P>
+          </div>
 
-    <div class="row row-cols-1 w-75 g-3 ms-4 mt-3 mb-4">
-      <div class="col border border-dark rounded">
-        <p class="text-center mt-2 mb-1">${
-          id.pricing == null
-            ? "No Cost"
-            : id.pricing[0].price == 0
-            ? "No Cost"
-            : id.pricing[0].price
-        }</P>
-        <p class="text-center">${
-          id.pricing == null ? "Starter" : id.pricing[0].plan
-        }</P>
+          <div class="col border border-warning rounded">
+            <p class="text-center mt-2 mb-1">${
+              id.pricing == null
+                ? "No Cost"
+                : id.pricing[1].price == 0
+                ? "No Cost"
+                : id.pricing[1].price
+            }</P>
+            <p class="text-center">${
+              id.pricing == null ? "Professional" : id.pricing[1].plan
+            }</P>
+          </div>
+
+          <div class="col border border-warning rounded">
+            <p class="text-center mt-2 mb-1">${
+              id.pricing == null
+                ? "No Cost"
+                : id.pricing[2].price == 0
+                ? "No Cost"
+                : id.pricing[2].price
+            }</P>
+            <p class="text-center">${
+              id.pricing == null ? "Enterprise" : id.pricing[2].plan
+            }</P>
+          </div>
+        </div>
       </div>
 
-      <div class="col border border-dark rounded">
-        <p class="text-center mt-2 mb-1">${
-          id.pricing == null
-            ? "No Cost"
-            : id.pricing[1].price == 0
-            ? "No Cost"
-            : id.pricing[1].price
-        }</P>
-        <p class="text-center">${
-          id.pricing == null ? "Professional" : id.pricing[1].plan
-        }</P>
-      </div>
+      <div class="d-flex flex-column flex-lg-row justify-content-between">
+        <div>
+          <h5 class="fw-bolder">Features</h5>
+          <ul>
+            <li>${id.features[1].feature_name}</li>
+            <li>${id.features[2].feature_name}</li>
+            <li>${id.features[3].feature_name}</li>
+          </ul>
+        </div>
 
-      <div class="col border border-dark rounded">
-        <p class="text-center mt-2 mb-1">${
-          id.pricing == null
-            ? "No Cost"
-            : id.pricing[2].price == 0
-            ? "No Cost"
-            : id.pricing[2].price
-        }</P>
-        <p class="text-center">${
-          id.pricing == null ? "Enterprise" : id.pricing[2].plan
-        }</P>
-      </div>
-    </div>
+        <div>
+          <h5 class="fw-bolder">Integrations</h5>
+          <ul>
+            <li>${
+              id.integrations == null
+                ? "No Data Found"
+                : id.integrations[0] == undefined
+                ? "No Data Found"
+                : id.integrations[0]
+            }
+            </li>
 
-    <div class="d-flex flex-column flex-lg-row justify-content-between">
-      <div>
-        <h5 class="fw-bolder">Features</h5>
-        <ul>
-          <li>${id.features[1].feature_name}</li>
-          <li>${id.features[2].feature_name}</li>
-          <li>${id.features[3].feature_name}</li>
-        </ul>
-      </div>
-
-      <div>
-        <h5 class="fw-bolder">Integrations</h5>
-        <ul>
-          <li>${
-            id.integrations == null
-              ? "No Data Found"
-              : id.integrations[0] == undefined
-              ? "No Data Found"
-              : id.integrations[0]
-          }</li>
-          <li class="${
-            id.integrations == null
-              ? "d-none"
-              : id.integrations[1] == undefined
-              ? "d-none"
-              : "d-block"
-          }">${
+            <li class="${
+              id.integrations == null
+                ? "d-none"
+                : id.integrations[1] == undefined
+                ? "d-none"
+                : "d-block"
+            }">${
     id.integrations == null ? "No Data Found" : id.integrations[1]
   }</li>
-          <li class="${
-            id.integrations == null
-              ? "d-none"
-              : id.integrations[2] == undefined
-              ? "d-none"
-              : "d-block"
-          }">${
+            
+            <li class="${
+              id.integrations == null
+                ? "d-none"
+                : id.integrations[2] == undefined
+                ? "d-none"
+                : "d-block"
+            }">${
     id.integrations == null ? "No Data Found" : id.integrations[2]
   }</li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   `;
