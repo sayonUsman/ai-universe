@@ -100,7 +100,6 @@ const displayDetails = (id) => {
   const title = document.getElementById("title");
   const content = document.getElementById("content");
   const image = document.getElementById("image");
-  title.innerText = id.tool_name;
 
   content.innerHTML = `
     <h6 class="fw-bolder">${id.description}</h6>
